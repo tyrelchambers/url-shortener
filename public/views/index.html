@@ -1,0 +1,51 @@
+{{define "index"}}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/public/assets/styles.css" />
+    <script
+      src="https://unpkg.com/htmx.org@1.9.6"
+      integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>URL Shorty</h1>
+    <p>Who doesn't love a URL shortener</p>
+
+    <form hx-post="/shorten" hx-swap="none" class="form">
+      <div class="form-group">
+        <label for="url">Shorten a URL</label>
+        <input
+          type="text"
+          name="url"
+          placeholder="Paste your url here"
+          value="https://tyrelchambers.com"
+        />
+      </div>
+      <button type="submit">Shorten URL</button>
+    </form>
+
+    <div>
+      <h2>Shortened URLs</h2>
+
+      <div id="urls">
+        {{range . }}
+        <a href="https://shorty.tyrelchambers.com/{{.PublicId}}" target="_blank"
+          >https://shorty.tyrelchambers.com/{{.PublicId}}</a
+        >
+        {{end}}
+      </div>
+    </div>
+  </body>
+</html>
+{{end}}

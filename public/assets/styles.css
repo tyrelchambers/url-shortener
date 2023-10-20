@@ -1,0 +1,14 @@
+html,
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.form {
+  width: 100%;
+  max-width: 600px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
