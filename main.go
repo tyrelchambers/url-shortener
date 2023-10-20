@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
 	"net/http"
+	"os"
 	"text/template"
 	"url/db"
 	"url/services"
@@ -63,6 +65,11 @@ func GetUrlHandler(c echo.Context) error {
 }
 
 func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
 	db.Init()
 
 	t := &Template{
@@ -77,5 +84,5 @@ func main() {
 	e.GET("/", IndexHandler)
 	e.POST("/shorten", Shorten)
 
-	e.Logger.Fatal(http.ListenAndServe(":8080", e))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
