@@ -84,5 +84,5 @@ func main() {
 	e.GET("/", IndexHandler)
 	e.POST("/shorten", Shorten)
 
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, e))
 }
